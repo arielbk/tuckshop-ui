@@ -1,22 +1,30 @@
-import { Card } from "@chakra-ui/react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { Card, Heading } from "@chakra-ui/react";
+import {
+  motion,
+  useMotionTemplate,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useRef } from "react";
 
 const MotionBox = motion(Card);
 
-function AnimatedCardDemo() {
+interface Props {
+  transitionDistance?: number;
+}
+
+function CardSlot({ transitionDistance = 100 }: Props) {
   const ghost = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: ghost,
     offset: ["start end", "end end"],
   });
-  const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1]);
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["#444", "#222"]
-  );
+  const scale = useTransform(scrollYProgress, [0, 1], [1.1, 1]);
+
+  const boxShadowY = useTransform(scrollYProgress, [0, 1], [10, 0]);
+  const boxShadowBlur = useTransform(scrollYProgress, [0, 1], [30, 0]);
+  const boxShadow = useMotionTemplate`0 ${boxShadowY}px ${boxShadowBlur}px rgba(0 0 0 / 0.4)`;
 
   return (
     <>
@@ -26,27 +34,38 @@ function AnimatedCardDemo() {
         style={{
           scale,
           position: "sticky",
-          backgroundColor,
+          // backgroundColor: "transparent",
+          boxShadow,
         }}
         bottom={8}
         margin='auto'
+        // backdropFilter={"blur(20px)"}
+        background={`
+          padding-box linear-gradient(rgb(20 20 20), rgb(20 20 20)),
+          border-box linear-gradient(170deg, rgb(155 155 155), rgb(20 20 20))
+        `}
+        border='2px solid transparent'
       >
-        <h2>Demo Card</h2>
+        <Heading as='h3' mb={2}>
+          Demo Card
+        </Heading>
         <p>This card will animate based on the scroll position.</p>
       </MotionBox>
       <div
         style={{
           position: "relative",
-          top: -100,
-          border: "1px dashed red",
+          top: -transitionDistance,
           borderRadius: 5,
-          marginBottom: -100,
+          marginBottom: -transitionDistance,
         }}
       >
-        <div ref={ghost} style={{ width: "100%", height: 100 }}></div>
+        <div
+          ref={ghost}
+          style={{ width: "100%", height: transitionDistance }}
+        ></div>
       </div>
     </>
   );
 }
 
-export default AnimatedCardDemo;
+export default CardSlot;

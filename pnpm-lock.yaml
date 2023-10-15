@@ -13,6 +13,9 @@ dependencies:
   framer-motion:
     specifier: ^10.16.4
     version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
+  generate-random-emoji:
+    specifier: ^1.0.2
+    version: 1.0.2
   lorem-ipsum:
     specifier: ^2.0.8
     version: 2.0.8
@@ -2534,6 +2537,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /generate-random-emoji@1.0.2:
+    resolution: {integrity: sha512-dSShKQTP7HgPbpF2HJXUjVTUSGjGEyqMJVxdEtu0FgSjXRXMzLYq6dpi7WqvJ3KY4JgVwamUZASTsStOuhOdkw==}
+    dev: false
 
   /gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
