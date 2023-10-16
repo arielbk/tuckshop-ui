@@ -7,17 +7,21 @@ import { getRandomEmoji } from "./utils/generateEmoji";
 
 function App() {
   return (
-    <Box mx={16}>
+    <Box mx={{ base: 2, md: 16 }}>
       <Heading as='h1' fontSize={48} my={16}>
-        Born to roll
+        Tuckshop UI
       </Heading>
       {Array.from({ length: 10 }).map(() => {
-        const dummyText = loremIpsum({ count: 1, units: "paragraph" });
+        const dummyText = loremIpsum({
+          count: 1,
+          units: "paragraph",
+          sentenceUpperBound: 10,
+        });
         const emoji = getRandomEmoji();
         return (
           <EmojiCard
             emoji={emoji}
-            my={4}
+            mb={8}
             background={"Background"}
             width='100%'
           >
@@ -27,12 +31,16 @@ function App() {
       })}
       <SlotCard transitionDistance={500} />
       {Array.from({ length: 10 }).map(() => {
-        const dummyText = loremIpsum({ count: 1, units: "paragraph" });
+        const dummyText = loremIpsum({
+          count: 1,
+          units: "paragraph",
+          sentenceUpperBound: 10,
+        });
         const emoji = getRandomEmoji();
         return (
           <EmojiCard
             emoji={emoji}
-            my={4}
+            mb={8}
             background={"Background"}
             width='100%'
           >

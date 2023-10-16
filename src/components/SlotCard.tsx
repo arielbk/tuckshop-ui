@@ -39,6 +39,7 @@ function CardSlot({ transitionDistance = 100 }: Props) {
         }}
         bottom={8}
         margin='auto'
+        mb={8}
         // backdropFilter={"blur(20px)"}
         background={`
           padding-box linear-gradient(rgb(20 20 20), rgb(20 20 20)),
@@ -47,16 +48,16 @@ function CardSlot({ transitionDistance = 100 }: Props) {
         border='2px solid transparent'
       >
         <Heading as='h3' mb={2}>
-          Demo Card
+          🧾 Menu cart
         </Heading>
-        <p>This card will animate based on the scroll position.</p>
+        <p color={"rgb(0 0 0 / 0.8)"}>Scroll down to see your order total.</p>
       </MotionBox>
       <div
         style={{
           position: "relative",
           top: -transitionDistance,
-          borderRadius: 5,
           marginBottom: -transitionDistance,
+          pointerEvents: "none",
         }}
       >
         <div
